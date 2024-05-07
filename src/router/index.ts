@@ -19,7 +19,7 @@ Vue.use(VueRouter)
 const routes: RouteConfig[] = [...CustomRoutes]
 const base =
     process.env.NODE_ENV === "production"
-        ? `${process.env.VUE_APP_BASE_URL || ""}`
+        ? `${process.env.VUE_APP_BASE_ROUTER_URL || ""}`
         : `/`
 console.log('base', base);
 const router = new VueRouter({
