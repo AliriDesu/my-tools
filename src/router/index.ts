@@ -28,6 +28,7 @@ const router = new VueRouter({
     routes,
 })
 
+console.log(process.env)
 router.beforeEach((to, from, next) => {
     const direction = get(to, 'meta.direction')
     const title = find(RouterMenu, e => e.direction === direction)?.label
