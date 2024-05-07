@@ -39,6 +39,10 @@ export default class AesIndex extends Vue {
     ]
 
     private curTab = "孝感"
+
+    mounted() {
+        console.log(process.env)
+    }
 }
 </script>
 
