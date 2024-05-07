@@ -1,6 +1,21 @@
 <template>
     <div>
-        <div class="font-weight-6 color-3 u-m-b-20 u-font-24">密文</div>
+        <div
+            class="font-weight-6 color-3 u-m-b-20 u-font-24 u-flex u-row-between"
+        >
+            <div>密文</div>
+            <div v-if="!cKey">
+                <el-button
+                    type="primary"
+                    @click="showPop = true"
+                    :disabled="!myKey"
+                    >保存当前配置</el-button
+                >
+            </div>
+            <div v-else>
+                <el-button type="danger" @click="del">删除当前配置</el-button>
+            </div>
+        </div>
         <el-input
             v-model="value"
             type="textarea"
@@ -36,19 +51,23 @@
             class="u-m-t-20"
             resize="none"
         ></el-input>
+        <aes-pop v-model="showPop" :cKey="myKey" @confirm="add"></aes-pop>
     </div>
 </template>
 
 <script lang="ts">
+import { MessageBox } from "element-ui"
 import { Component, Prop, Vue } from "vue-property-decorator"
-import { decodeValue } from "../decode"
+import { decodeValue, Row } from "../decode"
+import AesPop from "./aes-pop.vue"
 
-@Component({ components: {} })
+@Component({ components: { AesPop } })
 export default class AesTab extends Vue {
     @Prop()
     private cKey!: string
     value = ""
     dValue = ""
+    private showPop = false
 
     private myKey = ""
 
@@ -62,6 +81,18 @@ export default class AesTab extends Vue {
         console.log("%c输出结果↓↓", "color:#5782EC;")
         console.log(JSON.parse(JSON.stringify(v)))
         this.dValue = JSON.stringify(v)
+    }
+
+    private add(e: Row) {
+        this.$emit("add", e)
+    }
+
+    private del() {
+        MessageBox.confirm("确认删除此配置？", "提示")
+            .then(() => {
+                this.$emit("del", this.cKey)
+            })
+            .catch(() => {})
     }
 }
 </script>

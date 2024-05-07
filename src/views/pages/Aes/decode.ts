@@ -21,3 +21,8 @@ export function decodeValue(input: string, cKey: string) {
         return input;
     }
 }
+
+export interface Row {
+    label: string
+    key: string
+}
