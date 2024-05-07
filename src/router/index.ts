@@ -18,10 +18,13 @@ export type RouteConfig = VueRouteConfig & {
 Vue.use(VueRouter)
 
 const routes: RouteConfig[] = [...CustomRoutes]
-
+const base =
+    process.env.NODE_ENV === "production"
+        ? `/${process.env.VUE_APP_BASE_URL || ""}`
+        : `/`
 const router = new VueRouter({
     mode: 'history',
-    base: process.env.BASE_URL,
+    base: base.replace("//", "/"),
     routes,
 })
 
