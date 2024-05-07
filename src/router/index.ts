@@ -16,15 +16,15 @@ export type RouteConfig = VueRouteConfig & {
 }
 
 Vue.use(VueRouter)
-
 const routes: RouteConfig[] = [...CustomRoutes]
 const base =
     process.env.NODE_ENV === "production"
         ? `/${process.env.VUE_APP_BASE_URL || ""}`
         : `/`
+console.log('base', base);
 const router = new VueRouter({
     mode: 'history',
-    base: base.replace("//", "/"),
+    base: base,
     routes,
 })
 
@@ -34,6 +34,7 @@ router.beforeEach((to, from, next) => {
     if (title) {
         store.commit(RootStore.updateGlobalTitle, title)
     }
+    console.log('to', JSON.parse(JSON.stringify(to)));
     next()
 })
 
