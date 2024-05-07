@@ -36,6 +36,11 @@ router.beforeEach((to, from, next) => {
         store.commit(RootStore.updateGlobalTitle, title)
     }
     console.log('to', JSON.parse(JSON.stringify(to)));
+    if (localStorage.getItem("isManage") !== "true") {
+        setTimeout(() => {
+            console.clear()
+        }, 0);
+    }
     next()
 })
 

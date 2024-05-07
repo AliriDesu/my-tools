@@ -19,7 +19,7 @@ import LMenu from "./views/components/l-menu.vue"
 
 @Component({ components: { LMenu, LHeader } })
 export default class App extends Vue {
-    private showMenu = localStorage.getItem("showMenu") === "true"
+    private showMenu = localStorage.getItem("isManage") === "true"
 }
 </script>
 
