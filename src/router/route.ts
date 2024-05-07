@@ -6,13 +6,13 @@ import Router from 'vue-router'
 export const CustomRoutes: RouteConfig[] = [
     {
         path: '/',
-        meta: { direction: Direction.Home },
-        component: () => import('@/views/pages/Home.vue'),
-    },
-    {
-        path: '/aes',
         meta: { direction: Direction.Aes, title: "Aes解密" },
         component: () => import('@/views/pages/Aes/index.vue'),
+    },
+    {
+        path: '/home',
+        meta: { direction: Direction.Home },
+        component: () => import('@/views/pages/Home.vue'),
     },
 ]
 
