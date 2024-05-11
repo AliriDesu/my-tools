@@ -28,14 +28,7 @@
                 <el-input class="k" v-model="myKey"></el-input>
             </div>
             <div>
-                <el-button
-                    type="danger"
-                    @click="
-                        value = ''
-                        dValue = ''
-                    "
-                    >清空</el-button
-                >
+                <el-button type="danger" @click="clear">清空</el-button>
                 <el-button
                     type="primary"
                     @click="decode"
@@ -93,6 +86,12 @@ export default class AesTab extends Vue {
                 this.$emit("del", this.cKey)
             })
             .catch(() => {})
+    }
+
+    private clear() {
+        this.value = ""
+        this.dValue = ""
+        console.clear()
     }
 }
 </script>
